@@ -1,0 +1,23 @@
+name: pull-request
+run-name: testing
+on: [push]
+permissions:
+  contents: read
+  issues: write
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo's default branch
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: npm ci
+        run: npm ci
+      - name: npm run build
+        run: npm run build
+      - name: Run script
+        run: |
+          src/index.ts > README.md
