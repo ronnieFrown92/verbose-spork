@@ -2,8 +2,8 @@ name: pull-request
 run-name: testing
 on: [push]
 permissions:
-  contents: read
-  issues: write
+  contents: write
+  pull-requests: write
 jobs:
   job1:
     runs-on: ubuntu-latest
@@ -20,4 +20,4 @@ jobs:
         run: npm run build
       - name: Run script
         run: |
-          src/index.ts > README.md
+          src/index.ts > output.md
