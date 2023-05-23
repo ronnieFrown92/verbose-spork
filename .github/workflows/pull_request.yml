@@ -1,23 +1,17 @@
 name: pull-request
-run-name: testing
+
 on: [push]
-permissions:
-  contents: write
-  pull-requests: write
+
+env:
+  WF_ENV: I_am_Workflow_env
+
 jobs:
   job1:
     runs-on: ubuntu-latest
+    env:
+      JOB_ENV: I_am_Job_env
     steps:
-      - name: Check out repo's default branch
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: npm ci
-        run: npm ci
-      - name: npm run build
-        run: npm run build
-      - name: Run script
-        run: |
-          src/index.ts > output.md
+      - name: 'Print the message'
+        run: echo "WF=> $WF_ENV.....J=> $JOB_ENV.....S=> $STEP_ENV"
+        env:
+          STEP_ENV: I_am_Step_env
