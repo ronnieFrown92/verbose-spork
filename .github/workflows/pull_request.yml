@@ -2,16 +2,6 @@ name: pull-request
 
 on: [push]
 
-env:
-  WF_ENV: I_am_Workflow_env
-
 jobs:
   job1:
-    runs-on: ubuntu-latest
-    env:
-      JOB_ENV: I_am_Job_env
-    steps:
-      - name: 'Print the message'
-        run: echo "WF=> $WF_ENV.....J=> $JOB_ENV.....S=> $STEP_ENV"
-        env:
-          STEP_ENV: I_am_Step_env
+    uses: ronnieFrown92/verbose-spork/.github/workflows/test.yml@test-workflow
